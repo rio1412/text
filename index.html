@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>置き換え候補評価</title>
+</head>
+<body>
+    <h1>置き換え候補評価</h1>
+
+    <h2>置き換え候補</h2>
+    <ul>
+        {% for candidate in candidates %}
+            <li>
+                {{ candidate }}
+                <form action="/rate/{{ candidate }}/{{ score }}" method="get">
+                    <select name="score">
+                        {% for score in rating_criteria %}
+                            <option value="{{ loop.index }}">{{ score }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit">評価</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>サンプルテキスト</h2>
+    <p>{{ sample_text }}</p>
+</body>
+</html>
